@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=yes">
+  <title>B-FIT DUDE • Your Fitness Identity</title>
+  <!-- Tailwind CSS v3 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter for body, Tangerine / Great Vibes for script B -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Tangerine:wght@700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0A0F0F;
+      scroll-behavior: smooth;
+      position: relative;
+    }
+    /* custom cinematic gradients & overlays with purple infusion */
+    .bg-deep-teal {
+      background-color: #32707d;
+    }
+    .bg-seafoam {
+      background-color: #5da590;
+    }
+    .text-seafoam {
+      color: #5da590;
+    }
+    .border-seafoam {
+      border-color: #5da590;
+    }
+    /* purple accents */
+    .text-purple-soft {
+      color: #b89cd0;
+    }
+    .border-purple-soft {
+      border-color: #b89cd0;
+    }
+    .bg-purple-soft\/10 {
+      background-color: rgba(184, 156, 208, 0.1);
+    }
+    .hero-glow {
+      background: radial-gradient(circle at 20% 30%, rgba(93, 165, 144, 0.2), rgba(138, 43, 226, 0.1), transparent 70%);
+    }
+    /* script B styling */
+    .script-b {
+      font-family: 'Great Vibes', 'Tangerine', cursive;
+      font-weight: 700;
+      font-size: 2.5rem;
+      line-height: 1.3;
+      background: linear-gradient(135deg, #ffffff 0%, #5da590 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display:inline-block;
+      transform: rotate(-2deg);
+      text-shadow: 0 0 8px rgba(184, 156, 208, 0.5);
+      letter-spacing: 4px;
+      margin-right: -2px;
+    }
+    .logo-rest {
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(to right, #ffffff, #e6d0ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .card-cinematic {
+      backdrop-filter: blur(4px);
+      background: rgba(15, 25, 28, 0.7);
+      border: 1px solid rgba(184, 156, 208, 0.25);
+      transition: transform 0.25s ease, box-shadow 0.3s ease, border-color 0.2s;
+    }
+    .card-cinematic:hover {
+      transform: translateY(-6px);
+      border-color: rgba(184, 156, 208, 0.55);
+      box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(93, 165, 144, 0.25), 0 0 15px rgba(138, 43, 226, 0.3);
+    }
+    .btn-order {
+      background: linear-gradient(105deg, #5da590 0%, #7b4ea0 100%);
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(138, 43, 226, 0.25);
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .btn-order:hover {
+      background: linear-gradient(105deg, #6ebea8 0%, #8f5cb0 100%);
+      transform: scale(1.02);
+      box-shadow: 0 8px 20px rgba(138, 43, 226, 0.4);
+    }
+    .discount-tag {
+      background: #e05a2a;
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 0.25rem 0.7rem;
+      border-radius: 40px;
+      letter-spacing: 0.3px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .best-value-tag {
+      background: #c9a03d;
+      color: #0F1313;
+      font-weight: 800;
+    }
+    hr.divider {
+      border-color: rgba(184, 156, 208, 0.3);
+    }
+    /* background image integration */
+    .bg-image-layer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      opacity: 1;
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cGF0aCBmaWxsPSIjMTUyMjI0IiBmaWxsLW9wYWNpdHk9IjAuMDUiIGQ9Ik0wIDBoNDB2NDBIMHoiLz48L3N2Zz4=');
+      background-size: 80px 80px;
+      pointer-events: none;
+    }
+    /* The two uploaded images are used as decorative background elements (non-intrusive) */
+    /* This replaces your old .bg-silhouette class */
+    .bg-silhouette {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      width: 50%; /* Adjust size as needed */
+      max-width: 800px;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.50; /* Keeps it subtle so text is readable */
+      background-image: url('https://lh3.googleusercontent.com/d/1q2WfycaXg5YwQVJ6RBhbcPOB2Y2TMDBh'); /* Ensure the filename matches exactly */
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: bottom right;
+      pointer-events: none;
+      /* Adds a subtle purple/teal glow behind the character */
+      filter: drop-shadow(0 0 50px rgba(184, 156, 208, 0.2));
+    }
+    /* Additional subtle purple glow */
+    .purple-ambient {
+      position: fixed;
+      top: 10%;
+      left: 5%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(138,43,226,0.12) 0%, transparent 70%);
+      z-index: -1;
+    }
+    /* modal styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(5px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0.2s, opacity 0.2s ease;
+    }
+    .modal-overlay.active {
+      visibility: visible;
+      opacity: 1;
+    }
+    .modal-card {
+      background: #11191b;
+      border: 1px solid #b89cd0;
+      max-width: 380px;
+      width: 90%;
+      border-radius: 28px;
+      padding: 1.8rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 30px 40px rgba(0,0,0,0.6), 0 0 20px rgba(138,43,226,0.3);
+      transform: scale(0.95);
+      transition: transform 0.2s;
+    }
+
+    /* Breathing animation logic */
+    @keyframes breathe {
+      0% {
+      transform: scale(1);
+      box-shadow: 0 4px 14px rgba(138, 43, 226, 0.25);
+        }
+      50% {
+      transform: scale(1.05); /* Grows slightly */
+      box-shadow: 0 8px 25px rgba(138, 43, 226, 0.5), 0 0 10px rgba(93, 165, 144, 0.3);
+        }
+      100% {
+      transform: scale(1);
+      box-shadow: 0 4px 14px rgba(138, 43, 226, 0.25);
+        }
+    }
+    /* Apply the animation to the button */
+    .btn-animate-breathe {
+        animation: breathe 3s ease-in-out infinite;
+    }
+    .active .modal-card {
+      transform: scale(1);
+    }
+    .modal-icon {
+      background: rgba(184,156,208,0.15);
+      width: 60px;
+      height: 60px;
+      border-radius: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem auto;
+    }
+    ::selection {
+      background: #b89cd0;
+      color: #000;
+    }
+  </style>
+</head>
+<body class="bg-black text-white antialiased relative">
+
+  <!-- Background layers: uploaded images represented as decorative silhouettes & pattern -->
+  <div class="bg-image-layer"></div>
+  <div class="bg-silhouette"></div>
+  <div class="purple-ambient"></div>
+  <!-- Additional fixed glow for depth -->
+  <div class="fixed inset-0 bg-gradient-to-b from-purple-900/5 to-transparent pointer-events-none z-[-1]"></div>
+
+  <!-- Main container -->
+  <div class="relative min-h-screen overflow-x-hidden">
+    <div class="hero-glow absolute inset-0 pointer-events-none"></div>
+    
+    <!-- Header / Nav -->
+    <header class="relative z-10 px-6 py-5 max-w-7xl mx-auto flex justify-between items-center border-b border-[#b89cd0]/30 backdrop-blur-sm">
+      <div class="flex items-center text-2xl font-black tracking-tighter">
+        <!-- Script B with formal roundhand style -->
+        <span class="script-b">B</span>
+        <span class="logo-rest text-2xl">-FIT<span class="text-[#b89cd0]">DUDE</span></span>
+      </div>
+      <div class="hidden md:flex gap-6 text-sm font-medium text-gray-300">
+        <a href="#" class="hover:text-[#b89cd0] transition">Home</a>
+        <a href="#pricing" class="hover:text-[#b89cd0] transition">Plans</a>
+        <a href="#Temps" class="hover:text-[#b89cd0] transition">Templates</a>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative z-10 px-6 pt-12 md:pt-20 pb-16 max-w-6xl mx-auto text-center">
+      <div class="inline-block px-4 py-1 rounded-full bg-[#b89cd0]/20 border border-[#b89cd0]/50 text-[#b89cd0] text-xs font-semibold mb-6 backdrop-blur-sm">
+        🔥 LIMITED DROP • CUSTOM IDENTITY
+      </div>
+      <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[1.15]">
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-white via-[#e9d5ff] to-[#b89cd0]">Your Fitness,</span><br>
+        <span class="text-[#b89cd0] drop-shadow-xl">Your Identity.</span>
+      </h1>
+      <p class="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mt-6 leading-relaxed">
+        Personalized workout plans + custom character designs that reflect your evolution.  
+        <span class="block text-[#b89cd0]/80 text-base mt-1">Train with purpose. Become the avatar of your potential.</span>
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4 justify-center">
+        <a href="#pricing" class="px-6 py-3 rounded-full bg-[#5a4a7a] text-white font-semibold hover:bg-[#6b5b8a] transition shadow-lg border border-[#b89cd0]/30">
+          ⚡ Start your transformation
+        </a>
+        <a href="#Temps" class="px-6 py-3 rounded-full border border-[#b89cd0] text-[#b89cd0] font-semibold hover:bg-[#b89cd0]/10 transition">
+          ✨ Explore Templates
+        </a>
+      </div>
+    </section>
+
+    <!-- Pricing Plans Section -->
+    <section id="pricing" class="relative z-10 px-6 py-16 md:py-20 max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight">Own your <span class="text-[#b89cd0]">transformation</span></h2>
+        <div class="w-24 h-1 bg-[#b89cd0]/60 mx-auto mt-4 rounded-full"></div>
+        <p class="text-gray-400 mt-4 max-w-xl mx-auto">Choose your path — from powerful workouts to full digital identity.</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+        <!-- BASE PLAN Card -->
+        <div class="card-cinematic rounded-3xl p-6 md:p-8 flex flex-col h-full relative overflow-hidden">
+          <div class="absolute top-1 left-5 z-10 discount-tag">
+            ⏳ LIMITED TIME OFFER
+          </div>
+          <div class="mb-5">
+            <img src="https://lh3.googleusercontent.com/d/1n8nJnvbkS1SkKkgC6i5Sb3polqWfPnwz" class="absolute -right-20 top-5 opacity-30 pointer-events-none h-full object-contain" alt="">
+            <h3 class="text-2xl font-bold tracking-tight flex items-center gap-2 text-white">BASE PLAN <span class="text-xs bg-[#b89cd0]/30 px-2 py-0.5 rounded-full text-[#b89cd0]">starter</span></h3>
+            <div class="flex items-baseline gap-1 mt-3">
+              <span class="text-5xl font-black text-white">$5</span>
+              <span class="text-gray-400">USD</span>
+              <span class="ml-3 line-through text-gray-500 text-sm">$19</span>
+            </div>
+            <p class="text-gray-300 text-sm mt-1">one-time · lifetime access to custom plan</p>
+          </div>
+          <ul class="space-y-3 flex-grow my-4">
+            <li class="flex items-center gap-2"><span class="text-[#b89cd0] text-xl">✓</span> <span class="text-gray-200">🏋️ Workout Plan (tailored)</span></li>
+            <li class="flex items-center gap-2"><span class="text-[#b89cd0] text-xl">✓</span> <span class="text-gray-200">📊 Progress tracking templates</span></li>
+            <li class="flex items-center gap-2"><span class="text-[#b89cd0] text-xl">✓</span> <span class="text-gray-200">🍽️ Nutrition guide basics</span></li>
+            <li class="flex items-center gap-2"><span class="text-gray-500 text-xl">✕</span> <span class="text-gray-400">Custom Character Design</span></li>
+          </ul>
+          <div class="mt-6 pt-4 border-t border-[#b89cd0]/30">
+            <button class="order-btn w-full btn-order btn-animate-breathe py-3.5 rounded-xl text-white text-lg flex items-center justify-center gap-2 transition-all" data-plan="Base Plan" data-price="5" data-message="Hello! I would like to order the Base Plan ($5) for a custom workout.">
+              Order Now <span>→</span>
+            </button>
+            <p class="text-[11px] text-center text-gray-500 mt-3">Instant WhatsApp order • secure</p>
+          </div>
+        </div>
+
+        <!-- HERO PLAN Card -->
+        <div class="card-cinematic rounded-3xl p-6 md:p-8 flex flex-col h-full relative overflow-hidden border-[#b89cd0]/50 shadow-2xl" style="background: rgba(20, 18, 30, 0.75);">
+          <div class="absolute top-1 left-5 z-10 discount-tag best-value-tag bg-amber-500 text-black">
+            ⭐ BEST VALUE
+          </div>
+          <div class="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-[#b89cd0]/15 blur-2xl"></div>
+          <div class="mb-5">
+           <img src="https://lh3.googleusercontent.com/d/1icMOSikKGpFunO_OupEL1mURu9kRw0xv" class="absolute -right-20 top-5 opacity-30 pointer-events-none h-full object-contain" alt="">
+            <h3 class="text-2xl font-bold tracking-tight flex items-center gap-2 text-white">HERO PLAN <span class="text-xs bg-[#b89cd0]/30 px-2 py-0.5 rounded-full text-[#b89cd0]">avatar edition</span></h3>
+            <div class="flex items-baseline gap-1 mt-3">
+              <span class="text-5xl font-black text-white">$10</span>
+              <span class="text-gray-400">USD</span>
+              <span class="ml-3 line-through text-gray-500 text-sm">$39</span>
+            </div>
+            <p class="text-gray-300 text-sm mt-1">complete bundle + digital persona</p>
+          </div>
+          <ul class="space-y-3 flex-grow my-4">
+            <li class="flex items-center gap-2"><span class="text-[#b89cd0] text-xl">✓</span> <span class="text-gray-200">🏋️ Custom Workout Plan (advanced)</span></li>
+            <li class="flex items-center gap-2"><span class="text-[#b89cd0] text-xl">✓</span> <span class="text-gray-200">🎨 Custom Character Design & Avatar</span></li>
+            <li class="flex items-center gap-2"><span class="text-[#b89cd0] text-xl">✓</span> <span class="text-gray-200">🖼️ Avatar for socials</span></li>
+            <li class="flex items-center gap-2"><span class="text-[#b89cd0] text-xl">✓</span> <span class="text-gray-200">📈 Priority support & check-in</span></li>
+          </ul>
+          <div class="mt-6 pt-4 border-t border-[#b89cd0]/30">
+            <button class="order-btn w-full btn-order btn-animate-breathe py-3.5 rounded-xl text-white text-lg flex items-center justify-center gap-2 transition-all" data-plan="Hero Plan" data-price="10" data-message="Hello! I would like to order the Hero Plan ($10) which includes the custom character design.">
+              Order Now <span>🔥</span>
+            </button>
+            <p class="text-[11px] text-center text-gray-500 mt-3">Exclusive digital artwork + workout</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center text-gray-500 text-xs mt-12 flex justify-center gap-6 flex-wrap">
+        <span>🔒 Secure checkout via WhatsApp</span>
+        <span>⚡ Instant access after order</span>
+        <span>🎮 Avatar delivered within 48h (Hero)</span>
+      </div>
+    </section>
+
+    <section id="Temps" class="relative z-10 px-6 py-12 max-w-7xl mx-auto">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl font-bold tracking-tight">Preview the <span class="text-[#b89cd0]">Template</span></h2>
+        <p class="text-gray-400 mt-2">Check out the structure of your future custom plan.</p>
+    </div>
+
+        <div class="flex gap-6 overflow-x-auto pb-8 snap-x scrollbar-hide" style="scrollbar-width: none; -ms-overflow-style: none;">
+            <div class="min-w-[280px] md:min-w-[350px] snap-center">
+            <div class="card-cinematic rounded-2xl overflow-hidden border border-[#b89cd0]/30 shadow-2xl">
+                <img src="https://lh3.googleusercontent.com/d/17vmLB7Cirtl96mRvseCZDt7IfFx5zAX-" alt="Template Page 1" class="w-full h-auto opacity-90 hover:opacity-100 transition">
+            </div>
+            </div>
+            <div class="min-w-[280px] md:min-w-[350px] snap-center">
+            <div class="card-cinematic rounded-2xl overflow-hidden border border-[#b89cd0]/30 shadow-2xl">
+                <img src="https://lh3.googleusercontent.com/d/1hdjxqE9CEjmP_PVsvt2SMfc-K3O2Z3OO" alt="Template Page 2" class="w-full h-auto opacity-90 hover:opacity-100 transition">
+            </div>
+            </div>
+            <div class="min-w-[280px] md:min-w-[350px] snap-center">
+            <div class="card-cinematic rounded-2xl overflow-hidden border border-[#b89cd0]/30 shadow-2xl">
+                <img src="https://lh3.googleusercontent.com/d/1EEkKIUI0aEaGunhssWr_jHZZnV68nrtN" alt="Template Page 3" class="w-full h-auto opacity-90 hover:opacity-100 transition">
+            </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-4">
+            <p class="text-xs text-[#b89cd0]/60 animate-pulse">Swipe to explore the layout ↔</p>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="relative z-10 text-center py-10 border-t border-[#b89cd0]/20 text-gray-500 text-sm">
+      <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-2">
+        <span>© 2025 B-FIT DUDE — forge your legend</span>
+        <span class="text-[#b89cd0]/70">#YourFitnessYourIdentity</span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- MODAL STRUCTURE -->
+  <div id="orderModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#b89cd0]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+      <h3 class="text-xl font-bold text-white mb-2">✅ Order Initiated!</h3>
+      <p id="modalDetails" class="text-gray-300 text-sm my-2">Plan: Base Plan | Total: $5</p>
+      <p class="text-gray-400 text-xs mb-4">Please complete the details on WhatsApp.</p>
+      <button id="closeModalBtn" class="mt-2 px-6 py-2 bg-[#5a4a7a] hover:bg-[#6b5b8a] rounded-full text-white font-medium transition-all w-full border border-[#b89cd0]/40">Got it, continue →</button>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const orderBtns = document.querySelectorAll('.order-btn');
+      const modal = document.getElementById('orderModal');
+      const modalDetailsSpan = document.getElementById('modalDetails');
+      const closeModalBtn = document.getElementById('closeModalBtn');
+      
+      function showReceiptModal(planName, price) {
+        if (modalDetailsSpan) {
+          modalDetailsSpan.innerText = `Plan: ${planName} | Total: $${price}. Please complete the details on WhatsApp.`;
+        }
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+      
+      function closeModal() {
+        if (modal) {
+          modal.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      }
+      
+      if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', closeModal);
+      }
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) closeModal();
+        });
+      }
+      
+      orderBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const plan = btn.getAttribute('data-plan');
+          const price = btn.getAttribute('data-price');
+          const customMessage = btn.getAttribute('data-message');
+          
+          if (!plan || !price || !customMessage) {
+            console.warn("Missing data attributes");
+            return;
+          }
+          
+          showReceiptModal(plan, price);
+          
+          const phoneNumber = "962790037231";
+          let waUrl = `https://wa.me/${phoneNumber}?text=`;
+          const encodedMsg = encodeURIComponent(customMessage);
+          waUrl += encodedMsg;
+          
+          setTimeout(() => {
+            window.open(waUrl, '_blank');
+          }, 120);
+        });
+      });
+      
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
+          closeModal();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
